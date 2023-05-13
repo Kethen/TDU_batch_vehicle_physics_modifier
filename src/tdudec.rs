@@ -79,6 +79,13 @@ fn encrypt(input:&std::vec::Vec<u8>, save:bool) -> std::vec::Vec<u8> {
 		return output;
 	}
 
+	let mut input = input.clone();
+	let padding = input.len() % 32;
+
+	if padding != 0{
+		input.append(&mut vec![0u8; padding]);
+	}
+
 	let datalen = input.len();
 
 	if !save{
