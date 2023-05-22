@@ -62,6 +62,10 @@ fn simple(){
 						child.set_attribute("braking_dist_c2", &modify_value(braking_dist_c2, 0.05).to_string());
 						child.set_attribute("turning_speed_c1", &modify_value(turning_speed_c1, -0.25).to_string());
 						child.set_attribute("turning_speed_c2", &modify_value(turning_speed_c2, -0.25).to_string());
+						match log_max_speed{
+							Some(_) => {child.remove_attribute("log_max_speed").unwrap()},
+							None => {},
+						};
 					}
 					let new_xml = document_node.to_string().as_bytes().to_vec();
 					let new_xml_encrypted = tdudec::encrypt_others(&new_xml);
